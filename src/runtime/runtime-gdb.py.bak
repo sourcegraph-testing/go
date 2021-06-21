@@ -15,7 +15,7 @@ path to this file based on the path to the runtime package.
 #      circumventing the pretty print triggering.
 
 
-
+from __future__ import print_function
 import re
 import sys
 
@@ -162,7 +162,7 @@ class MapTypePrinter:
 		flags = self.val['flags']
 		inttype = self.val['hash0'].type
 		cnt = 0
-		for bucket in range(2 ** int(B)):
+		for bucket in xrange(2 ** int(B)):
 			bp = buckets + bucket
 			if oldbuckets:
 				oldbucket = bucket & (2 ** (B - 1) - 1)
@@ -174,7 +174,7 @@ class MapTypePrinter:
 					bp = oldbp
 			while bp:
 				b = bp.dereference()
-				for i in range(8):
+				for i in xrange(8):
 					if b['tophash'][i] != 0:
 						k = b['keys'][i]
 						v = b['values'][i]
@@ -228,7 +228,7 @@ def makematcher(klass):
 			pass
 	return matcher
 
-goobjfile.pretty_printers.extend([makematcher(var) for var in list(vars().values()) if hasattr(var, 'pattern')])
+goobjfile.pretty_printers.extend([makematcher(var) for var in vars().values() if hasattr(var, 'pattern')])
 
 
 #
