@@ -1,8 +1,8 @@
-function openURL(url) {
+const :[fn~\w+] = (url) => {
   chrome.tabs.create({ "url": url })
 }
 
-function addLinks() {
+const :[fn~\w+] = () => {
   var links = document.getElementsByTagName("a");
   for (var i = 0; i < links.length; i++) {
     var url = links[i].getAttribute("url");
